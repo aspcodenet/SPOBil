@@ -135,6 +135,7 @@
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BilIndexViewModel.cs" />
+    <Compile Include="ViewModels\BilEditViewModel.cs" />
     <Compile Include="ViewModels\BilViewViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +176,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Bil\Index.cshtml" />
     <Content Include="Views\Bil\View.cshtml" />
+    <Content Include="Views\Bil\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

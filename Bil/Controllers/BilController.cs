@@ -25,6 +25,42 @@ namespace Bil.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var db = new Models.DBContext();
+            var bil = db.Get(id);
+            var model = new ViewModels.BilEditViewModel
+            {
+                Color = bil.Color,
+                Manufacturer = bil.Manufacturer,
+                Modell = bil.Model,
+                //Price = bil.Price,
+                Year = bil.Year,
+                Id = bil.Id
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ViewModels.BilEditViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var db = new Models.DBContext();
+            var bil = db.Get(model.Id);
+            bil.Manufacturer = model.Manufacturer;
+            bil.Model = model.Modell;
+            //bil.Price = model.Price;
+            bil.Year = model.Year;
+            bil.Color = model.Color;
+
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult View(int id)
         {
             var db = new Models.DBContext();

@@ -1,0 +1,58 @@
+﻿@model Bil.ViewModels.BilEditViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Tillbaka till lista", "Index", new { })
+</p>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>Tillverkare</td>
+            <td>
+                @Html.HiddenFor(p => p.Id)
+                @Html.TextBoxFor(p => p.Manufacturer)
+                @Html.ValidationMessageFor(p => p.Manufacturer)
+            </td>
+        </tr>
+        <tr>
+            <td>Modell</td>
+            <td>
+                @Html.TextBoxFor(p => p.Modell)
+                @Html.ValidationMessageFor(p => p.Modell)
+            </td>
+        </tr>
+        <tr>
+            <td>Årsmodell</td>
+            <td>
+                @Html.TextBoxFor(p => p.Year)
+                @Html.ValidationMessageFor(p => p.Year)
+            </td>
+        </tr>
+        <tr>
+            <td>Färg</td>
+            <td>
+                @Html.TextBoxFor(p => p.Color)
+                @Html.ValidationMessageFor(p => p.Color)
+            </td>
+        </tr>
+        @*<tr>
+            <td>Pris</td>
+            <td>
+                @Html.TextBoxFor(p => p.Price)
+                @Html.ValidationMessageFor(p => p.Price)
+            </td>
+        </tr>*@
+    </table>
+    <input type="submit" value="Spara" />
+
+}
