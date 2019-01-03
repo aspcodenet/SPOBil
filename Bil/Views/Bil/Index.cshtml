@@ -1,0 +1,30 @@
+﻿@model Bil.ViewModels.BilIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Cars) {
+    <tr>
+        <td>@item.Manufacturer @item.Model</td>
+        <td>@item.Year</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+            @Html.ActionLink("View", "View", new {  id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

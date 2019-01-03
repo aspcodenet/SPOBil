@@ -1,0 +1,38 @@
+﻿@model Bil.ViewModels.BilViewViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Tillbaka till lista", "Index", new {})
+</p>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>Tillverkare</td>
+        <td>@Model.Manufacturer</td>
+    </tr>
+    <tr>
+        <td>Modell</td>
+        <td>@Model.Model</td>
+    </tr>
+    <tr>
+        <td>Årsmodell</td>
+        <td>@Model.Year</td>
+    </tr>
+    <tr>
+        <td>Färg</td>
+        <td>@Model.Color</td>
+    </tr>
+    <tr>
+        <td>Pris</td>
+        <td>@Model.Price</td>
+    </tr>
+
+</table>
