@@ -29,5 +29,10 @@ namespace Bil.Models
             }
             return cars;
         }
+
+        internal void AddBil(Bil bil)
+        {
+            cars.Add(bil);
+        }
     }
 }

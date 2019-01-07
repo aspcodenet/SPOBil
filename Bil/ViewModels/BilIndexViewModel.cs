@@ -7,6 +7,9 @@ namespace Bil.ViewModels
 {
     public class BilIndexViewModel
     {
+        public string SearchYear { get; set; }
+        public string SearchManufacturer { get; set; }
+
         public BilIndexViewModel()
         {
             Cars = new List<BilListViewModel>();

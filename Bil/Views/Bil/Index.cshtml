@@ -16,15 +16,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.Cars) {
-    <tr>
-        <td>@item.Manufacturer @item.Model</td>
-        <td>@item.Year</td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-            @Html.ActionLink("View", "View", new {  id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.Cars)
+    {
+        <tr>
+            <td>@item.Manufacturer @item.Model</td>
+            <td>@item.Year</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("View", "View", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+<h1>Sök</h1>
+@using (Html.BeginForm("Search", "Bil",FormMethod.Get))
+{
+    <table class="table">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>Tillverkare</td>
+            <td>
+                @Html.TextBoxFor(p => p.SearchManufacturer)
+            </td>
+        </tr>
+        <tr>
+            <td>Årsmodell</td>
+            <td>
+                @Html.TextBoxFor(p => p.SearchYear)
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Sök" />
+
+}

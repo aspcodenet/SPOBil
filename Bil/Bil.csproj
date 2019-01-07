@@ -177,6 +177,7 @@
     <Content Include="Views\Bil\Index.cshtml" />
     <Content Include="Views\Bil\View.cshtml" />
     <Content Include="Views\Bil\Edit.cshtml" />
+    <Content Include="Views\Bil\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

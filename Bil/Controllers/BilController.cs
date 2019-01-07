@@ -25,6 +25,43 @@ namespace Bil.Controllers
             return View(model);
         }
 
+
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var model = new ViewModels.BilCreateViewModel();
+           return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(ViewModels.BilCreateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var db = new Models.DBContext();
+            var newId = db.GetAll().Max(r=>r.Id) + 1;
+
+            var bil = new Models.Bil
+            {
+                Id = newId,
+                Color = model.Color,
+                Manufacturer = model.Manufacturer,
+                Model = model.Modell,
+                Year = model.Year
+            };
+
+            db.AddBil(bil);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -40,6 +77,44 @@ namespace Bil.Controllers
                 Id = bil.Id
             };
             return View(model);
+        }
+
+
+
+
+        [HttpGet]
+        public ActionResult Search(string SearchManufacturer, string SearchYear)
+        {
+            var db = new Models.DBContext();
+            var model = new ViewModels.BilIndexViewModel
+            {
+                SearchManufacturer = SearchManufacturer,
+                SearchYear = SearchYear
+            };
+            model.Cars.AddRange(db.GetAll().Select(r => new ViewModels.BilIndexViewModel.BilListViewModel
+            {
+                Manufacturer = r.Manufacturer,
+                Model = r.Model,
+                Year = r.Year,
+                Id = r.Id
+            }).Where(c=> Matches(c, SearchManufacturer, SearchYear)
+                ));
+
+            return View("Index",    model);
+        }
+
+        bool Matches(ViewModels.BilIndexViewModel.BilListViewModel bil, string SearchManufacturer, string SearchYear )
+        {
+            if (!string.IsNullOrEmpty(SearchManufacturer))
+            {
+                SearchManufacturer = SearchManufacturer.ToLower();
+                if (!bil.Manufacturer.ToLower().Contains(SearchManufacturer)) return false;
+            }
+            if (!string.IsNullOrEmpty(SearchYear))
+            {
+                if (!bil.Year.ToString().Contains(SearchYear)) return false;
+            }
+            return true;
         }
 
         [HttpPost]

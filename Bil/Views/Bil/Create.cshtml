@@ -1,4 +1,4 @@
-﻿@model Bil.ViewModels.BilEditViewModel
+﻿@model Bil.ViewModels.BilCreateViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -19,7 +19,6 @@
         <tr>
             <td>Tillverkare</td>
             <td>
-                @Html.HiddenFor(model => model.Id)
                 @Html.TextBoxFor(model => model.Manufacturer)
 
                 @Html.ValidationMessageFor(model => model.Manufacturer)
